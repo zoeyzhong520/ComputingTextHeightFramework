@@ -75,6 +75,7 @@ extension ComputingTextHeightFrameworkHomeViewController {
         testLabel.setText(text: TextForLabel, lineSpaing: 8, labelWidth: screenWidth - 20*2, font: UIFont.systemFont(ofSize: 14)) //设置行间距
         self.TestLabelH = TextForLabel.heightWithLabelFont(font: UIFont.systemFont(ofSize: 14), labelWidth: screenWidth - 20*2, lineSpacing: 8, label: testLabel)
         testLabel.frame = CGRect(x: 20, y: 20, width: screenWidth - 20*2, height: self.TestLabelH)
+        testLabel.isHidden = self.TestLabelH == 0
         self.scrollView.addSubview(testLabel)
     }
     
@@ -88,7 +89,8 @@ extension ComputingTextHeightFrameworkHomeViewController {
         singleLineLabel.textAlignment = .left
         
         self.SingleLineLabelH = singleLineLabel.text!.heightWithLabelFont(font: UIFont.systemFont(ofSize: 14))
-        singleLineLabel.frame = CGRect(x: 20, y: self.testLabel.frame.maxY + 20, width: screenWidth - 20*2, height: self.SingleLineLabelH)
+        singleLineLabel.frame = CGRect(x: 20, y: (self.testLabel.isHidden == true ? 0 : self.testLabel.frame.maxY) + 20, width: screenWidth - 20*2, height: self.SingleLineLabelH)
+        self.singleLineLabel.isHidden = self.SingleLineLabelH == 0
         self.scrollView.addSubview(singleLineLabel)
     }
 }
