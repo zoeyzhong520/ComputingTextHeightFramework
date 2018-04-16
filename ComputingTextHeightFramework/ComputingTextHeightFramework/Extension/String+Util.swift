@@ -53,6 +53,7 @@ extension String {
                 height = self.heightWithLabelFont(font: font)
             }
         }
+        print("多行文本的高度 height: \(height)")
         return height
     }
     
